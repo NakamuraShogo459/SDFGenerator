@@ -13,5 +13,86 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="asset">
+      <UniqueIdentifier>{2b9602d4-e7df-4c92-a126-6f1dfea64571}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="build">
+      <UniqueIdentifier>{a2fb10bf-149b-4859-ac5d-dece7e081690}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sample">
+      <UniqueIdentifier>{3c7fe9cf-45d8-42a1-847c-aa3a514ab897}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{fca621c8-53bf-4fa8-81fd-07cea28a857f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\d3d11_sdf">
+      <UniqueIdentifier>{7d5804a2-6ea6-461d-9d6f-4cb9be1d6268}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ext">
+      <UniqueIdentifier>{68af86bd-ee34-4f2b-9a63-965f46e401f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ext\agz_utils">
+      <UniqueIdentifier>{db52bbcb-12fc-4fab-b662-4bc7523deacd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="asset\sdf_renderer.hlsl">
+      <Filter>asset</Filter>
+    </FxCompile>
+    <FxCompile Include="asset\sdf_shadow.hlsl">
+      <Filter>asset</Filter>
+    </FxCompile>
+    <FxCompile Include="src\d3d11-sdf\sdf.hlsl">
+      <Filter>src\d3d11_sdf</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="cli\main.cpp">
+      <Filter>build</Filter>
+    </ClCompile>
+    <ClCompile Include="sample\camera.cpp">
+      <Filter>sample</Filter>
+    </ClCompile>
+    <ClCompile Include="sample\main.cpp">
+      <Filter>sample</Filter>
+    </ClCompile>
+    <ClCompile Include="sample\sdf_renderer.cpp">
+      <Filter>sample</Filter>
+    </ClCompile>
+    <ClCompile Include="sample\sdf_shadow.cpp">
+      <Filter>sample</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bvh.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sdf.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="sample\camera.h">
+      <Filter>sample</Filter>
+    </ClInclude>
+    <ClInclude Include="sample\common.h">
+      <Filter>sample</Filter>
+    </ClInclude>
+    <ClInclude Include="sample\sdf_renderer.h">
+      <Filter>sample</Filter>
+    </ClInclude>
+    <ClInclude Include="sample\sdf_shadow.h">
+      <Filter>sample</Filter>
+    </ClInclude>
+    <ClInclude Include="src\d3d11-sdf\bvh.h">
+      <Filter>src\d3d11_sdf</Filter>
+    </ClInclude>
+    <ClInclude Include="src\d3d11-sdf\common.h">
+      <Filter>src\d3d11_sdf</Filter>
+    </ClInclude>
+    <ClInclude Include="src\d3d11-sdf\ray.h">
+      <Filter>src\d3d11_sdf</Filter>
+    </ClInclude>
+    <ClInclude Include="src\d3d11-sdf\sdf.h">
+      <Filter>src\d3d11_sdf</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
