@@ -42,42 +42,51 @@ private:
     float shadowRayOffset_ = 0.03f;
 
     ImGui::FileBrowser fileBrowser_;
-
+    // 初期化処理
     void initialize() override
     {
+        // ウィンドウの構築
         window_->setMaximized();
 
+        // SDFRenderの初期化
+        // TODO:後で読む
         sdfRenderer_.initilalize();
         sdfShadowRenderer_.initialize();
-
+        // ウサギのモデルの初期化
         objFilename_ = "./asset/bunny.obj";
         loadMesh();
-
+        // カメラの初期化
         camera_.setPosition(Float3(0, 0, -4));
         camera_.setDirection(3.1415926f / 2, 0);
         camera_.setPerspective(60.0f, 0.1f, 100.0f);
-
+        // ファイル読み込み用の何か？uImGUIを使う物っぽい？
+        // TODO:後で読む
         fileBrowser_.SetTitle("Select Obj");
         fileBrowser_.SetPwd("./asset/");
-
+        // マウス情報の初期化
         mouse_->setCursorLock(
             true, window_->getClientWidth() / 2, window_->getClientHeight() / 2);
         mouse_->showCursor(false);
+        // ウィンドウの何か
+        // TODO:後で読む
         window_->doEvents();
     }
-
+    // 毎フレーム行う処理？Update的な奴だと思う
     void frame() override
     {
+        // ESCキーを押したら終了処理を行う
         if(keyboard_->isDown(KEY_ESCAPE))
             window_->setCloseFlag(true);
-
+        // 左CTRLキーを押すとマウスが可視化されるようにするための処理
+        // TOOD:Input関連の処理を後で参考にしておく
         if(keyboard_->isDown(KEY_LCTRL))
         {
             mouse_->showCursor(!mouse_->isVisible());
             mouse_->setCursorLock(
                 !mouse_->isLocked(), mouse_->getLockX(), mouse_->getLockY());
         }
-
+        // ImGUIの開始処理？
+        // TODO:後で読む
         if(ImGui::Begin("Settings", nullptr, ImGuiWindowFlags_AlwaysAutoResize))
         {
             static const char *modeNames[] =
@@ -128,10 +137,12 @@ private:
 
             loadMesh();
         }
-        
+        // カメラ関連の処理
         camera_.setWOverH(window_->getClientWOverH());
+        // マウスが可視化されていなければ
         if(!mouse_->isVisible())
         {
+            // カメラの情報を更新する
             camera_.update({
                 .front      = keyboard_->isPressed('W'),
                 .left       = keyboard_->isPressed('A'),
@@ -143,11 +154,13 @@ private:
                 .cursorRelY = static_cast<float>(mouse_->getRelativePositionY())
             });
         }
+        // カメラの変換用マトリックスの生成
         camera_.recalculateMatrics();
-
+        // 深度バッファのクリア
         window_->clearDefaultDepth(1);
+        // RenderTargetのクリア
         window_->clearDefaultRenderTarget({ 0, 0, 0, 0 });
-
+        // 描画モードの違いによるレンダリング処理の分岐
         if(mode_ == SDFVis)
         {
             sdfRenderer_.setCamera(camera_);
@@ -197,7 +210,8 @@ private:
                 normals.push_back(v.normal);
             }
         }
-
+        // SDFのベイク処理を行っていると思われる
+        // TODO:要チェック
         sdfGen_.setSignRayCount(signRayCount_);
         sdf_ = sdfGen_.generateGPU(
             vertices.data(), normals.data(), tris.size(),
