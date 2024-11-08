@@ -12,35 +12,46 @@ public:
     using Demo::Demo;
 
 private:
-
+    // 描画モード管理用
     enum Mode
     {
         SDFVis,
         SDFShadow,
     };
-
+    // 描画モード管理用の変数
     Mode mode_ = SDFVis;
-
+    // SDFのインスタンス
     d3d11_sdf::SDF       sdf_;
+    // 頂点バッファ
     VertexBuffer<Vertex> mesh_;
-
+    // SDF描画用のインスタンス
     SDFRenderer       sdfRenderer_;
+    // SDFのシャドウ描画のインスタンス
     SDFShadowRenderer sdfShadowRenderer_;
-
+    // カメラ
     Camera camera_;
-
+    // SDF変換に使用するobjファイル名
     std::string objFilename_;
+    // Rayのステップ数
     int         signRayCount_ = 12;
+    // よくわからん
+    // TODO:後で調べる
     int         sdfRes_       = 64;
-
+    // objをSDFに変換する機能のインスタンス
     d3d11_sdf::SDFGenerator sdfGen_;
-
+    // よくわからん
+    // TODO:後で調べる
     int   maxTraceSteps_ = 64;
+    // 絶対値のなにかのしきいち
+    // TODO:後で調べる
     float absThreshold_  = 0.01f;
-
+    // よくわからん
+    // TODO:後で調べる
     float shadowK_         = 30;
+    // RayのOffset 
+    // TODO:どこで使われているか調べる
     float shadowRayOffset_ = 0.03f;
-
+    // Gui.おそらくobjファイル変更時にファイル参照するタイミングで出てきたui
     ImGui::FileBrowser fileBrowser_;
     // 初期化処理
     void initialize() override
